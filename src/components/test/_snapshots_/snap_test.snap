@@ -1,56 +1,11 @@
 exports[`Snapshot Test: renders without crashing 1`] = `
-<div
-  className="App"
->
-  <h1>
-    Simple CRUD App with React-Redux-TS
-  </h1>
-  <br />
-  <br />
-  <h4
-    className="info"
-  >
-    Enter Post Info
-  </h4>
-  <div
-    className="input-base"
-  >
-    <p>
-      name
-    </p>
-    <input
-      name="name"
-      onChange={[Function]}
-      type="text"
-    />
-    <style>
-      
-    </style>
-  </div>
-  <div
-    className="input-base"
-  >
-    <p>
-      age
-    </p>
-    <input
-      name="age"
-      onChange={[Function]}
-      type="number"
-    />
-    <style>
-      
-    </style>
-  </div>
-  <button
-    onClick={[Function]}
-  >
-    Add
-  </button>
-  <br />
-  <br />
-  <style>
-    
-  </style>
-</div>
+<div style={{ display: "flex", justifyContent: "center", zIndex: "100000" }}>
+      <Container style={{ backgroundColor: "#cccccc", position: "fixed", }}>
+        <h1 style={{ textAlign: "center", padding: "15px", backgroundColor: "#ccc", margin: "2px" }}>CRUD App with React-Redux-TS</h1>
+        <h4>Add New Post Here:</h4>
+        <Input type="text" placeholder="Title" onChange={e => handleInput(e, "title")} style={{ width: "100%" }} />
+        <Input type="text" placeholder="Body Text" onChange={e => handleInput(e, "body")} style={{ width: "100%" }} />
+        <Button variant="contained" onClick={handleAdd} style={{ marginTop: "20px", marginBottom: "20px", width: "200px" }}>Add</Button>
+      </Container>
+    </div>
 `;
