@@ -1,3 +1,4 @@
+// @ts-ignore
 import {
     Post,
     START_GET_POST,

@@ -1,3 +1,4 @@
+// @ts-ignore
 import {
     START_GET_POST,
     SUCCESS_GET_POST,

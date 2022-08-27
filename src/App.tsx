@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
 import axios from "axios";
+// @ts-ignore
 import { startGetPost } from "./redux/posts/action.ts";
 import { PostActionsTypes, Post } from "./redux/posts/types";
 import {
@@ -9,7 +10,9 @@ import {
   LinkDispatchProps,
   LinkStateProps
 } from "./interfaces";
+// @ts-ignore
 import DashBoard from "./components/DashBoard/DashBoard.tsx";
+// @ts-ignore
 import Form from "./components/Form/Form.tsx"
 import "./App.css";
 // Combine All types of props
