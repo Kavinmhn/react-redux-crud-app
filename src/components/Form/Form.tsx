@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+// @ts-ignore
 import { startAddPost } from "../../redux/posts/action.ts";
 import { InputHandlerParam } from "../../types";
 import { useDispatch } from "react-redux";
