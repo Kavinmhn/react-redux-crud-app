@@ -6,6 +6,9 @@ import {
     START_ADD_POST,
     SUCCESS_ADD_POST,
     FAIL_ADD_POST,
+    START_UPDATE_POST,
+    SUCCESS_UPDATE_POST,
+    FAIL_UPDATE_POST,
     PostState,
     PostActionsTypes
   } from "./types.ts";
@@ -43,6 +46,24 @@ import {
       }
       case FAIL_ADD_POST:
         return { ...state, loading: false, error: true };
+
+
+        case START_UPDATE_POST:{
+          return { ...state, loading: true };
+        }
+    
+        case SUCCESS_UPDATE_POST:{
+          const {id, userId, title, body} = action.payload;
+          const updatedList = [...state.posts]
+          
+          const result = {id, userId, title, body}
+          
+          updatedList[0][id-1] = result
+         
+          return { ...state, posts:updatedList };
+        }
+        case FAIL_UPDATE_POST:
+          return { ...state, loading: false, error: true };
   
       default:
         return { ...state };

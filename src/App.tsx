@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
 import axios from "axios";
 // @ts-ignore
-import { startGetPost } from "./redux/posts/action.ts";
+import { startGetPost, startUpdatePost } from "./redux/posts/action.ts";
 import { PostActionsTypes, Post } from "./redux/posts/types";
 import {
   AppProps,
@@ -19,7 +19,8 @@ import "./App.css";
 type Props = AppProps & LinkDispatchProps & LinkStateProps;
 
 const App = () => {
-  
+  const [postToUpdate, setPostToUpdate] = useState([]);
+  const [update, setUpdate] = useState(false)
 
   const posts = useSelector<ThunkDispatch<any, any, PostActionsTypes>>(state => state.post.posts)
   const dispatch = useDispatch()
@@ -28,25 +29,41 @@ const App = () => {
     const getAllPost: any = await axios.get("https://jsonplaceholder.typicode.com/posts")
     dispatch(startGetPost(getAllPost.data))
   }
-  
-  useEffect(()=>{
+
+  const handleUpdate = (postId: number) => {
+    const getPost = posts[0].filter(post => postId === post.id)
+    const { id, title, body, userId } = getPost[0]
+
+    setPostToUpdate({ id, title, body, userId });
+    setUpdate(true)
+    //dispatch(startUpdatePost(id, title, body, userId))
+  }
+
+  useEffect(() => {
     handleGetAll()
-  },[])
+  }, [])
+
+  const setUpdateStatus = (status: boolean) => {
+    setUpdate(status)
+  }
+
   //===========================================================================================
   //PLESE READ THIS:
   //unable to install @mareial-ui/core with current react version to use MakeStyle from /styles.
   //So, I'm using inline CSS here.
-  //There may be alternative option. But no time to find it out.
   //===========================================================================================
-    return (
-      <>
-      <Form />
-        <div style={{marginTop: "310px"}}>
-        <DashBoard posts={posts} />
-        </div>
-        </>
-    );
-  
+  return (
+    <>
+    
+      <Form postToUpdate={postToUpdate} update={update} setUpdateStatus={setUpdateStatus} />
+      
+      {/*Please check the above comment regarding the inline CSS here*/}
+      <div style={{ marginTop: "310px" }}>
+        <DashBoard posts={posts} handleUpdate={id => handleUpdate(id)} />
+      </div>
+    </>
+  );
+
 }
 
 export default App;

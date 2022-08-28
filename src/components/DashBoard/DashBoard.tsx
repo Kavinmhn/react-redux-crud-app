@@ -2,21 +2,25 @@ import React from "react";
 import { PostListProps } from "./interfaces";
 //import styles from "./styles";
 import Container from '@mui/material/Container';
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
+// @ts-ignore
+import { post } from '../../redux/posts/types.ts'
 
-  //===========================================================================================
-  //PLESE READ THIS:
-  //unable to install @mareial-ui/core with current react version to use MakeStyle from /styles.
-  //So, I'm using inline CSS here.
-  //There may be alternative option. But no time to find it out.
-  //===========================================================================================
-const DashBoard: React.FC<PostListProps> = ({ posts }) => {
-  
+//===========================================================================================
+//PLESE READ THIS:
+//unable to install @mareial-ui/core with current react version to use MakeStyle from /styles.
+//So, I'm using inline CSS here.
+//===========================================================================================
+const DashBoard: React.FC<PostListProps> = ({ posts, handleUpdate }) => {
+
   const postsSet = posts[0] ? posts[0] : []
+
   const content = postsSet.map((post, index) => (
-    <Box key={post.id} sx={{ border: '1px solid #ccc', marginTop: '20px', marginBotton: '10px', borderRadius: "5px", boxShadow:"2px", padding: "20px"  }}>
+    <Box key={post.id} sx={{ border: '1px solid #ccc', marginTop: '20px', marginBotton: '10px', borderRadius: "5px", boxShadow: "2px", padding: "20px" }}>
+      {/*Please check the above comment regarding the inline CSS here*/}
       <p><b>{post.id}: {post.title}</b></p>
       <p>{post.body}</p>
+      <Button onClick={() => handleUpdate(post.id)} >Update</Button>
     </Box>
   ));
 

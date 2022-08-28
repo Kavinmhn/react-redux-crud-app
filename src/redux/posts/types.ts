@@ -10,6 +10,11 @@ export const START_ADD_POST = "START_ADD_POST";
 export const SUCCESS_ADD_POST = "SUCCESS_ADD_POST";
 export const FAIL_ADD_POST = "FAIL_ADD_POST";
 
+export const UPDATE_POST = "UPDATE_POST";
+export const START_UPDATE_POST = "START_UPDATE_POST";
+export const SUCCESS_UPDATE_POST = "SUCCESS_UPDATE_POST";
+export const FAIL_UPDATE_POST = "FAIL_UPDATE_POST";
+
 // Define post type
 export interface Posts {
     id: number;

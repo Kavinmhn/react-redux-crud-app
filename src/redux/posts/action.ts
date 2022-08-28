@@ -7,8 +7,12 @@ import {
     START_ADD_POST,
     SUCCESS_ADD_POST,
     FAIL_ADD_POST,
+    START_UPDATE_POST,
+    SUCCESS_UPDATE_POST,
+    FAIL_UPDATE_POST,
     PostActionsTypes,
     ADD_POST,
+    UPDATE_POST,
     GET_POST
   } from "./types.ts";
   import { Dispatch } from "redux";
@@ -29,6 +33,14 @@ import {
     subtypes: [START_ADD_POST, SUCCESS_ADD_POST, FAIL_ADD_POST],
     promise: axios.post("https://jsonplaceholder.typicode.com/posts", { title: title, body: body, userId: 1}, {headers:{'Content-type': 'application/json; charset=UTF-8',} })
   });
+
+  export const updatePost = (id:number, title: string, body: string, userId: number): PostActionsTypes => (
+    {
+    type: UPDATE_POST,
+    payload: {userId, id, title, body},
+    subtypes: [START_UPDATE_POST, SUCCESS_UPDATE_POST, FAIL_UPDATE_POST],
+    promise: axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, { id: id, title: title, body: body, userId: 1}, {headers:{'Content-type': 'application/json; charset=UTF-8',} })
+  });
   
   // Action Dispatchers
   export const startGetPost = (post: Post) => (
@@ -43,4 +55,11 @@ import {
     //getState: () => ReduxStoreState
   ) => {
     dispatch(addPost(title, body));
+  };
+
+  export const startUpdatePost = (id:number, title:string, body:string, userId:number) => (
+    dispatch: Dispatch<PostActionsTypes>,
+    //getState: () => ReduxStoreState
+  ) => {
+    dispatch(updatePost(id, title, body, userId));
   };

@@ -33,6 +33,20 @@ const actionMiddleWare: Middleware = ({
     } catch (error) {
       return next({ ...action, type: FAIL_ADD_POST });
     }
+  }else if (action.type.includes("UPDATE_POST")) {
+    const [START_UPDATE_POST, SUCCESS_UPDATE_POST, FAIL_UPDATE_POST] = action.subtypes;
+
+    next({ ...action, type: START_UPDATE_POST });
+
+    // Here we will dispatch SUCCESS OR FAIL based on some condition or try/catch
+    try {
+      const response: AxiosResponse = await action.promise;
+      if (response.status === 200 || response.status === 201) {
+        return next({ ...action, type: SUCCESS_UPDATE_POST });
+      }
+    } catch (error) {
+      return next({ ...action, type: FAIL_UPDATE_POST });
+    }
   }
   // Call the next dispatch method in the middleware chain.
   const returnValue = next(action);
