@@ -43,12 +43,12 @@ export const Form = ({ postToUpdate, update, setUpdateStatus }) => {
   //===========================================================================================
   return (
     <div style={{ display: "flex", justifyContent: "center", }}>
-      <Container style={{ backgroundColor: "#cccccc", position: "fixed", zIndex: 10000000000000 }}>
+      <Container sx={{ backgroundColor: "#cccccc", position: "fixed", zIndex: 10000000000000 }}>
         {/*Please check the above comment regarding the inline CSS here*/}
         <h1 style={{ textAlign: "center", padding: "15px", backgroundColor: "#ccc", margin: "2px" }}>CRUD App with React-Redux-TS</h1>
         <h4>Add/Update Post Here:</h4>
-        <Input required type="text" name="title" placeholder="Title" onChange={e => handleInput(e, "title")} style={{ width: "100%" }} value={title} />
-        <Input required type="text" name="body" placeholder="Body Text" onChange={e => handleInput(e, "body")} style={{ width: "100%" }} value={body} />
+        <Input required type="text" name="title" placeholder="Title" onChange={e => handleInput(e, "title")} sx={{ width: "100%" }} value={title} />
+        <Input required type="text" name="body" placeholder="Body Text" onChange={e => handleInput(e, "body")} sx={{ width: "100%" }} value={body} />
         <Button variant="contained" onClick={handleAdd} style={{ marginTop: "20px", marginBottom: "20px", width: "200px" }}>{update ? "Update" : "Add"}</Button>
       </Container>
     </div>

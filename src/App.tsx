@@ -15,8 +15,8 @@ import DashBoard from "./components/DashBoard/DashBoard.tsx";
 // @ts-ignore
 import Form from "./components/Form/Form.tsx"
 import "./App.css";
+import { Container } from "@mui/system";
 // Combine All types of props
-type Props = AppProps & LinkDispatchProps & LinkStateProps;
 
 const App = () => {
   const [postToUpdate, setPostToUpdate] = useState([]);
@@ -60,9 +60,9 @@ const App = () => {
       <Form postToUpdate={postToUpdate} update={update} setUpdateStatus={setUpdateStatus} />
 
       {/*Please check the above comment regarding the inline CSS here*/}
-      <div style={{ marginTop: "310px" }}>
+      <Container sx={{ marginTop: "310px" }}>
         <DashBoard posts={posts} handleUpdate={id => handleUpdate(id)} />
-      </div>
+      </Container>
     </>
   );
 
