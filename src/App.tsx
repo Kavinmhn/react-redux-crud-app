@@ -21,7 +21,7 @@ type Props = AppProps & LinkDispatchProps & LinkStateProps;
 const App = () => {
   const [postToUpdate, setPostToUpdate] = useState([]);
   const [update, setUpdate] = useState(false)
-
+{/*@ts-ignore*/}
   const posts = useSelector<ThunkDispatch<any, any, PostActionsTypes>>(state => state.post.posts)
   const dispatch = useDispatch()
 
@@ -31,9 +31,11 @@ const App = () => {
   }
 
   const handleUpdate = (postId: number) => {
+    {/*@ts-ignore*/ }
     const getPost = posts[0].filter(post => postId === post.id)
     const { id, title, body, userId } = getPost[0]
 
+    {/*@ts-ignore*/ }
     setPostToUpdate({ id, title, body, userId });
     setUpdate(true)
     //dispatch(startUpdatePost(id, title, body, userId))
@@ -54,9 +56,9 @@ const App = () => {
   //===========================================================================================
   return (
     <>
-    
+
       <Form postToUpdate={postToUpdate} update={update} setUpdateStatus={setUpdateStatus} />
-      
+
       {/*Please check the above comment regarding the inline CSS here*/}
       <div style={{ marginTop: "310px" }}>
         <DashBoard posts={posts} handleUpdate={id => handleUpdate(id)} />
